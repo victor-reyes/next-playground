@@ -1,3 +1,5 @@
-export default function Loading(){
-    return <p>Loadig...</p>
+import DashboardSkeleton from '../ui/skeletons';
+
+export default function Loading() {
+  return <DashboardSkeleton />;
 }
