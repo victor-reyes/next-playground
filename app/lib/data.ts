@@ -7,7 +7,7 @@ import {
   LatestInvoiceRaw,
   Revenue,
 } from './definitions';
-import { formatCurrency } from './utils';
+import { delayRandomly, formatCurrency } from './utils';
 
 export async function fetchRevenue() {
   try {
@@ -212,13 +212,4 @@ export async function fetchFilteredCustomers(query: string) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch customer table.');
   }
-}
-
-async function delayRandomly(minDelay: number = 0, maxDelay: number = 1000) {
-  if (minDelay < 0 || maxDelay < 0) throw new Error('minDelay and maxDelay must be non-negative');
-
-  if (minDelay > maxDelay) throw new Error('minDelay cannot be greater than maxDelay.');
-
-  const delay = minDelay + Math.random() * (maxDelay - minDelay);
-  return new Promise((resolve) => setTimeout(resolve, delay));
 }
