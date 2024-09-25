@@ -15,7 +15,7 @@ export async function fetchRevenue() {
     // Don't do this in production :)
 
     console.log('Fetching revenue data...');
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await delayRandomly(1000, 3000);
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
 
@@ -29,7 +29,7 @@ export async function fetchRevenue() {
 }
 
 export async function fetchLatestInvoices() {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await delayRandomly(500, 1500);
 
   try {
     const data = await sql<LatestInvoiceRaw>`
@@ -56,7 +56,7 @@ export async function fetchCardData() {
     // However, we are intentionally splitting them to demonstrate
     // how to initialize multiple queries in parallel with JS.
 
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await delayRandomly(300, 1000);
 
     const invoiceCountPromise = sql`SELECT COUNT(*) FROM invoices`;
     const customerCountPromise = sql`SELECT COUNT(*) FROM customers`;
